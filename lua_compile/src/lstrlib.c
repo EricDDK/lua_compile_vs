@@ -122,7 +122,8 @@ static int str_rep (lua_State *L) {
   const char *s = luaL_checklstring(L, 1, &l);
   lua_Integer n = luaL_checkinteger(L, 2);
   const char *sep = luaL_optlstring(L, 3, "", &lsep);
-  if (n <= 0) lua_pushliteral(L, "");
+  if (n <= 0) 
+	lua_pushliteral(L, "");
   else if (l + lsep < l || l + lsep > MAXSIZE / n)  /* may overflow? */
     return luaL_error(L, "resulting string too large");
   else {
@@ -130,7 +131,8 @@ static int str_rep (lua_State *L) {
     luaL_Buffer b;
     char *p = luaL_buffinitsize(L, &b, totallen);
     while (n-- > 1) {  /* first n-1 copies (followed by separator) */
-      memcpy(p, s, l * sizeof(char)); p += l;
+      memcpy(p, s, l * sizeof(char)); 
+	  p += l;
       if (lsep > 0) {  /* empty 'memcpy' is not that cheap */
         memcpy(p, sep, lsep * sizeof(char));
         p += lsep;

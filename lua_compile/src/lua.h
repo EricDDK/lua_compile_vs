@@ -158,7 +158,7 @@ LUA_API const lua_Number *(lua_version) (lua_State *L);
 LUA_API int   (lua_absindex) (lua_State *L, int idx);
 LUA_API int   (lua_gettop) (lua_State *L);
 LUA_API void  (lua_settop) (lua_State *L, int idx);
-LUA_API void  (lua_pushvalue) (lua_State *L, int idx);
+LUA_API void  (lua_pushvalue) (lua_State *L, int idx); //取出栈中n偏移位的元素压到栈顶
 LUA_API void  (lua_rotate) (lua_State *L, int idx, int n);
 LUA_API void  (lua_copy) (lua_State *L, int fromidx, int toidx);
 LUA_API int   (lua_checkstack) (lua_State *L, int n);
@@ -341,6 +341,7 @@ LUA_API void      (lua_setallocf) (lua_State *L, lua_Alloc f, void *ud);
 #define lua_tonumber(L,i)	lua_tonumberx(L,(i),NULL)
 #define lua_tointeger(L,i)	lua_tointegerx(L,(i),NULL)
 
+//弹出相对栈顶的第n个元素
 #define lua_pop(L,n)		lua_settop(L, -(n)-1)
 
 #define lua_newtable(L)		lua_createtable(L, 0, 0)
